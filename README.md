@@ -11,7 +11,7 @@ In this project, you will put yourself in the shoes of a data analyst performing
 
 **Question 1**: Write at least two questions you think could be answered by data.
 
-**Answer**: 
+**Answer**:
 
 - First, which users are more likely to pay for yearly subscription? And which other users are more likely to buy short-term, such as 3-day or 24 hour passes? Undestanding the composition of customers may help the company put in commercials and market promotions more efficiently so as to increase its sale.
 
@@ -25,14 +25,14 @@ In 2014, Bay Area Bike Share held an [Open Data Challenge](http://www.bayareabik
 
 **Question 2**: What visualizations do you think provide the most interesting insights? Select at least two visualizations from the analysis and describe what you found interesting about each one. Are you able to answer either of the questions you identified above based on Tyler’s analysis? Why or why not?
 
-**Answer**: 
+**Answer**:
 - The first visualization that impresses me is the one "System-wide Riders per Day" with a button for "Highlight Weekends." It is not a complicated graph, but it suggests an obvious pattern and an explanation for the ups and downs in terms of time, which interested me as a reader from the beginning.
 
-- Similarly, the one that shows daily rides for each category of users across the entire timespan takes more factors such as time, events, and weather into account and makes good use of interactive buttons. It makes me realize that one can include so much information in one graph in a very well organized way. 
+- Similarly, the one that shows daily rides for each category of users across the entire timespan takes more factors such as time, events, and weather into account and makes good use of interactive buttons. It makes me realize that one can include so much information in one graph in a very well organized way.
 
-- The matrix-like graph of starting and ending station of trips is also innovative to me. Although it has to include so many station names in a graph, it shows the popularity of stations and suggests where bikes may be most needed, which is very helpful information for the company to distribute their resources. 
+- The matrix-like graph of starting and ending station of trips is also innovative to me. Although it has to include so many station names in a graph, it shows the popularity of stations and suggests where bikes may be most needed, which is very helpful information for the company to distribute their resources.
 
-- From Tyler's analysis, the graphs "Rides by weekday" and "Rides by hour" combined can answer my first question about characteristics of people who buy different passes. These two graphs show that subscribers have more rides on weekdays and during rush hours, while customers have more rides on weekends and during non-rush hours. The information suggests that subscribers are more likely to be people who live and work in the area, while customers are probably visitors, travellers, students, seniors, etc. 
+- From Tyler's analysis, the graphs "Rides by weekday" and "Rides by hour" combined can answer my first question about characteristics of people who buy different passes. These two graphs show that subscribers have more rides on weekdays and during rush hours, while customers have more rides on weekends and during non-rush hours. The information suggests that subscribers are more likely to be people who live and work in the area, while customers are probably visitors, travellers, students, seniors, etc.
 
 - My second question can also be answered by Tyler's analysis. The table and graph in "Where do people ride Bike Share" inform  how much the bikes are used in each city by different categories of customers at different time of the year. The company can use such information to adjust their service capacity according to the need of each city in a timely way.  
 
@@ -303,7 +303,7 @@ def summarise_data(trip_in, station_data, trip_out):
     """
     # generate dictionary of station - city mapping
     station_map = create_station_mapping(station_data)
-    
+
     with open(trip_out, 'w') as f_out:
         # set up csv writer object        
         out_colnames = ['duration', 'start_date', 'start_year',
@@ -311,7 +311,7 @@ def summarise_data(trip_in, station_data, trip_out):
                         'start_city', 'end_city', 'subscription_type']        
         trip_writer = csv.DictWriter(f_out, fieldnames = out_colnames)
         trip_writer.writeheader()
-        
+
         for data_file in trip_in:
             with open(data_file, 'r') as f_in:
                 # set up csv reader object
@@ -320,12 +320,12 @@ def summarise_data(trip_in, station_data, trip_out):
                 # collect data from and process each row
                 for row in trip_reader:
                     new_point = {}
-                    
+
                     # convert duration units from seconds to minutes
                     ### Question 3a: Add a mathematical operation below   ###
                     ### to convert durations from seconds to minutes.     ###
-                    new_point['duration'] = float(row['Duration'])/60 
-                    
+                    new_point['duration'] = float(row['Duration'])/60
+
                     # reformat datestrings into multiple columns
                     ### Question 3b: Fill in the blanks below to generate ###
                     ### the expected time values.                         ###
@@ -335,7 +335,7 @@ def summarise_data(trip_in, station_data, trip_out):
                     new_point['start_month'] = trip_date.strftime('%m')
                     new_point['start_hour']  = trip_date.strftime('%H')
                     new_point['weekday']     = trip_date.strftime('%A')
-                    
+
                     # remap start and end terminal with start and end city
                     new_point['start_city'] = station_map[row['Start Terminal']]
                     new_point['end_city'] = station_map[row['End Terminal']]
@@ -451,7 +451,7 @@ question_3(sample_data)
 
 
     All counts are as expected!
-    
+
 
 > **Tip**: If you save a jupyter Notebook, the output from running code blocks will also be saved. However, the state of your workspace will be reset once a new session is started. Make sure that you run all of the necessary code blocks from your previous session to reestablish variables and functions before picking up where you last left off.
 
@@ -471,7 +471,7 @@ usage_stats(trip_data)
     The median trip duration is 10.72 minutes.
     25% of trips are shorter than 6.82 minutes.
     25% of trips are longer than 17.28 minutes.
-    
+
 
 
 
@@ -490,7 +490,7 @@ usage_plot(trip_data, 'subscription_type')
 ```
 
 
-![png](output_16_0.png)
+![png](/image/1.png)
 
 
 Seems like there's about 50% more trips made by subscribers in the first month than customers. Let's try a different variable now. What does the distribution of trip durations look like?
@@ -501,7 +501,7 @@ usage_plot(trip_data, 'duration')
 ```
 
 
-![png](output_18_0.png)
+![png](/image/2.png)
 
 
 Looks pretty strange, doesn't it? Take a look at the duration values on the x-axis. Most rides are expected to be 30 minutes or less, since there are overage charges for taking extra time in a single trip. The first bar spans durations up to about 1000 minutes, or over 16 hours. Based on the statistics we got out of `usage_stats()`, we should have expected some trips with very long durations that bring the average to be so much higher than the median: the plot shows this in a dramatic, but unhelpful way.
@@ -514,7 +514,7 @@ usage_plot(trip_data, 'duration', ['duration < 60'])
 ```
 
 
-![png](output_20_0.png)
+![png](/image/3.png)
 
 
 This is looking better! You can see that most trips are indeed less than 30 minutes in length, but there's more that you can do to improve the presentation. Since the minimum duration is not 0, the left hand bar is slighly above 0. We want to be able to tell where there is a clear boundary at 30 minutes, so it will look nicer if we have bin sizes and bin boundaries that correspond to some number of minutes. Fortunately, you can use the optional "boundary" and "bin_width" parameters to adjust the plot. By setting "boundary" to 0, one of the bin edges (in this case the left-most bin) will start at 0 rather than the minimum trip duration. And by setting "bin_width" to 5, each bar will count up data points in five-minute intervals.
@@ -525,7 +525,7 @@ usage_plot(trip_data, 'duration', ['duration < 60'], boundary = 0, bin_width = 5
 ```
 
 
-![png](output_22_0.png)
+![png](/image/4.png)
 
 
 **Question 4**: Which five-minute trip duration shows the most number of trips? Approximately how many trips were made in this range?
@@ -682,24 +682,24 @@ usage_plot(trip_data,'start_hour', ["subscription_type == 'Customer'"],bin_width
 ```
 
 
-![png](output_32_0.png)
+![png](5.png)
 
 
 
-![png](output_32_1.png)
+![png](6.png)
 
 
 
-![png](output_32_2.png)
+![png](7.png)
 
 
 
-![png](output_32_3.png)
+![png](8.png)
 
 
 **Question 5a**: What is interesting about the above visualization? Why did you select it?
 
-**Answer**: The graphs above examine the using pattern of annual subscribers and short-term customers in terms of weekdays. It is interesting to see that subscribers have a lot of more rides on weekdays and short-term customers have more rides on weekends. In addition, subscribers have more rides during rush hours in mornings and afternoons, while short-term customers are more likely to have rides during 12 p.m. and 5 p.m. 
+**Answer**: The graphs above examine the using pattern of annual subscribers and short-term customers in terms of weekdays. It is interesting to see that subscribers have a lot of more rides on weekdays and short-term customers have more rides on weekends. In addition, subscribers have more rides during rush hours in mornings and afternoons, while short-term customers are more likely to have rides during 12 p.m. and 5 p.m.
 
 Since we have two categories of users in our data, it is important to know how differently they may use the bikes, so that the company can differentiate customer groups and advertise accordingly.  
 
@@ -711,11 +711,11 @@ usage_plot(trip_data,'duration', ["duration < 90", "subscription_type == 'Custom
 ```
 
 
-![png](output_34_0.png)
+![png](9.png)
 
 
 
-![png](output_34_1.png)
+![png](10.png)
 
 
 **Question 5b**: What is interesting about the above visualization? Why did you select it?
@@ -734,19 +734,19 @@ usage_plot(trip_data,'duration', [("weekday == 'Saturday'") or ("weekday == 'Sun
 ```
 
 
-![png](output_36_0.png)
+![png](11.png)
 
 
 
-![png](output_36_1.png)
+![png](12.png)
 
 
 
-![png](output_36_2.png)
+![png](13.png)
 
 
 
-![png](output_36_3.png)
+![png](14.png)
 
 
 - I also examined how yearly subscribers' riding behavior varies by weekdays and weekends. It seems that some yearly subscribers also ride on weekends, preferably between 11 a.m. and 2 p.m.. In addition, there seems to be a slightly larger proportion of people who ride for longer time, more than 15 minutes, on weekends than on weekdays.
@@ -757,7 +757,7 @@ Congratulations on completing the project! This is only a sampling of the data a
 
 **Question 6**: Think of a topic or field of interest where you would like to be able to apply the techniques of data science. What would you like to be able to learn from your chosen subject?
 
-**Answer**: With a major in higher education studies, I am interested in applying the techniques of data science to the field of online learning. From the data collected from e-learners, I hope to learn about their personal charateristics (if such information is available), clicking habits, frequency of learning, time spent on each project/course/program, their choice of courses/programs/degrees, their purpose of learning, career goal and so on, so that we can provide personalized courses, improve our service, attract and retain users, and therefore increase subscriptions. 
+**Answer**: With a major in higher education studies, I am interested in applying the techniques of data science to the field of online learning. From the data collected from e-learners, I hope to learn about their personal charateristics (if such information is available), clicking habits, frequency of learning, time spent on each project/course/program, their choice of courses/programs/degrees, their purpose of learning, career goal and so on, so that we can provide personalized courses, improve our service, attract and retain users, and therefore increase subscriptions.
 
 > **Tip**: If we want to share the results of our analysis with others, we aren't limited to giving them a copy of the jupyter Notebook (.ipynb) file. We can also export the Notebook output in a form that can be opened even for those without Python installed. From the **File** menu in the upper left, go to the **Download as** submenu. You can then choose a different format that can be viewed more generally, such as HTML (.html) or
 PDF (.pdf). You may need additional packages or software to perform these exports.
