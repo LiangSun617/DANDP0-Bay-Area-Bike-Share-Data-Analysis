@@ -682,19 +682,19 @@ usage_plot(trip_data,'start_hour', ["subscription_type == 'Customer'"],bin_width
 ```
 
 
-![png](5.png)
+![png](/image/5.png)
 
 
 
-![png](6.png)
+![png](/image/6.png)
 
 
 
-![png](7.png)
+![png](/image/7.png)
 
 
 
-![png](8.png)
+![png](/image/8.png)
 
 
 **Question 5a**: What is interesting about the above visualization? Why did you select it?
@@ -711,11 +711,11 @@ usage_plot(trip_data,'duration', ["duration < 90", "subscription_type == 'Custom
 ```
 
 
-![png](9.png)
+![png](/image/9.png)
 
 
 
-![png](10.png)
+![png](/image/10.png)
 
 
 **Question 5b**: What is interesting about the above visualization? Why did you select it?
@@ -734,19 +734,19 @@ usage_plot(trip_data,'duration', [("weekday == 'Saturday'") or ("weekday == 'Sun
 ```
 
 
-![png](11.png)
+![png](/image/11.png)
 
 
 
-![png](12.png)
+![png](/image/12.png)
 
 
 
-![png](13.png)
+![png](/image/13.png)
 
 
 
-![png](14.png)
+![png](/image/14.png)
 
 
 - I also examined how yearly subscribers' riding behavior varies by weekdays and weekends. It seems that some yearly subscribers also ride on weekends, preferably between 11 a.m. and 2 p.m.. In addition, there seems to be a slightly larger proportion of people who ride for longer time, more than 15 minutes, on weekends than on weekdays.
